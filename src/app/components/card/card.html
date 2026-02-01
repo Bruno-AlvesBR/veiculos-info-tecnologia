@@ -1,0 +1,39 @@
+<div class="content-image">
+  <img [src]="vehicle.imageUrl" [alt]="vehicle.name" />
+</div>
+
+<div class="content">
+  <h2>{{ vehicle.brand }} {{ vehicle.name }}</h2>
+  @if (vehicle.model) {
+  <p class="content-model-name">{{ vehicle.model }}</p>
+  }
+
+  <div class="content-model">
+    <span>
+      <mat-icon>calendar_today</mat-icon>
+      <span>{{ vehicle.yearFabrication }}/{{ vehicle.yearLaunch }}</span>
+    </span>
+    <span>-</span>
+    <span>
+      <mat-icon>speed</mat-icon>
+      <span>{{ vehicle.mileage || '0' }} Km</span>
+    </span>
+  </div>
+
+  <span class="price">
+    @if (vehicle.price) { @if (vehicle.price.includes('R$')) {
+    {{ vehicle.price }}
+    } @else {
+    {{ vehicle.price | currency : 'BRL' : 'symbol-narrow' }}
+    } } @else { Consulte }
+  </span>
+</div>
+
+<div class="content-buttons">
+  <button
+    (click)="router.navigate(['/veiculos', vehicle.id || vehicle._id])"
+    class="btn btn-primary full-width"
+  >
+    Ver veículo
+  </button>
+</div>

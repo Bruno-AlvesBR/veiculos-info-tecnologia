@@ -1,0 +1,59 @@
+<div class="container">
+  <app-breadcrumb />
+
+  <div class="content">
+    <app-filters (searchChange)="handleSearch($event)" />
+
+    <div class="content-list">
+      @if (vehicles.length > 0) {
+      <app-reorder
+        [count]="vehicles.length"
+        [total]="countAllResults"
+        (orderCallback)="handleOrder($event)"
+      />
+      } @if (vehicles.length === 0) {
+      <section class="content-empty-state">
+        <mat-icon>directions_car</mat-icon>
+        <h2 class="content-empty-title">
+          {{ currentSearch ? 'Nenhum veículo encontrado' : 'Nenhum veículo cadastrado' }}
+        </h2>
+        <p class="content-empty-description">
+          {{
+            currentSearch
+              ? 'Tente ajustar os filtros de busca para encontrar o que procura.'
+              : 'Comece cadastrando seu primeiro veículo na plataforma.'
+          }}
+        </p>
+        @if (!currentSearch) {
+        <a class="content-empty-button" routerLink="/veiculos/cadastrar">
+          <mat-icon>add</mat-icon>
+          Cadastrar veículo
+        </a>
+        }
+      </section>
+      } @else {
+      <div class="content-cards">
+        @for (vehicle of vehicles; track $index) {
+        <app-card [vehicle]="vehicle" />
+        }
+      </div>
+      } @if (vehicles.length > 0) {
+      <mat-paginator
+        [length]="countAllResults"
+        [pageIndex]="currentPageIndex"
+        [pageSize]="currentPageSize"
+        [pageSizeOptions]="[12, 24, 36]"
+        aria-label="Selecionar página"
+        (page)="handlePagination($event)"
+      >
+      </mat-paginator>
+      }
+    </div>
+  </div>
+</div>
+
+@if (this.showScrollTop) {
+<button class="scroll-top-button" (click)="handleScrollTop()">
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>
+}

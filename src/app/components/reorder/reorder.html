@@ -1,0 +1,15 @@
+<p>{{ count }} de {{ total }}</p>
+
+<button matIconButton [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="handleClickItem('price')">
+    <mat-icon>add</mat-icon>
+    <span>Mais caro</span>
+  </button>
+  <button mat-menu-item (click)="handleClickItem('-price')">
+    <mat-icon>remove</mat-icon>
+    <span>Mais barato</span>
+  </button>
+</mat-menu>

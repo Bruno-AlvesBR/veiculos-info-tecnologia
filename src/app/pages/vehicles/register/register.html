@@ -1,0 +1,72 @@
+<div class="container">
+  <app-breadcrumb />
+
+  <div class="form-wrapper">
+    <h1 class="form-title">Cadastrar veículo</h1>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <div class="form-row">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Marca</mat-label>
+          <input type="text" matInput formControlName="brand" placeholder="Ex: Toyota" />
+          @if (formControls.brand.invalid && (formControls.brand.touched || submitted)) {
+            <mat-error>Informe a marca (mínimo 2 caracteres)</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Nome do veículo</mat-label>
+          <input type="text" matInput formControlName="name" placeholder="Ex: Corolla" />
+          @if (formControls.name.invalid && (formControls.name.touched || submitted)) {
+            <mat-error>Informe o nome (mínimo 2 caracteres)</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <div class="form-row">
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ano de fabricação</mat-label>
+          <input type="number" matInput formControlName="yearFabrication" placeholder="Ex: 2024" min="1900" max="2100" />
+          @if (formControls.yearFabrication.invalid && (formControls.yearFabrication.touched || submitted)) {
+            <mat-error>Ano entre 1900 e 2100</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+          <mat-label>Ano de lançamento</mat-label>
+          <input type="number" matInput formControlName="yearLaunch" placeholder="Ex: 2024" min="1900" max="2100" />
+          @if (formControls.yearLaunch.invalid && (formControls.yearLaunch.touched || submitted)) {
+            <mat-error>Ano entre 1900 e 2100</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Preço</mat-label>
+        <input type="text" matInput formControlName="price" appPriceMask placeholder="Ex: R$ 150.000,00" inputmode="numeric" />
+        @if (formControls.price.invalid && (formControls.price.touched || submitted)) {
+          <mat-error>Informe o preço</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>URL da imagem</mat-label>
+        <input type="url" matInput formControlName="imageUrl" placeholder="https://exemplo.com/imagem.jpg" />
+        @if (formControls.imageUrl.invalid && (formControls.imageUrl.touched || submitted)) {
+          <mat-error>Informe uma URL válida (http ou https)</mat-error>
+        }
+      </mat-form-field>
+
+      @if (errorMessage) {
+        <p class="form-error">{{ errorMessage }}</p>
+      }
+
+      <div class="form-actions">
+        <a routerLink="/veiculos" class="btn btn-secondary">Cancelar</a>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">
+          {{ loading ? 'Salvando...' : 'Cadastrar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

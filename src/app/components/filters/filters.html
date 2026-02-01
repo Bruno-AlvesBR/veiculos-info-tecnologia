@@ -1,0 +1,15 @@
+<form class="form" (submit)="$event.preventDefault(); onSearchChange()">
+  <mat-form-field class="full-width">
+    <mat-label>Buscar por nome</mat-label>
+    <input
+      type="text"
+      matInput
+      [(ngModel)]="searchTerm"
+      name="search"
+      placeholder="Buscar por nome..."
+      (change)="onSearchChange()"
+      (keyup.enter)="onSearchChange()"
+    />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+</form>

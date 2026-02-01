@@ -1,0 +1,7 @@
+@for (item of paths; track $index) {
+  <a [href]="item.path">{{ item.label }}</a>
+
+  @if ($index < paths.length - 1) {
+    <span>/</span>
+  }
+}

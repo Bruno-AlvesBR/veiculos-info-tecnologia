@@ -1,0 +1,28 @@
+@use '../../../variables.scss' as *;
+
+:host {
+  @include flex-row;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  font-size: 0.875rem;
+
+  @include media-up(sm) {
+    gap: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #363636;
+  word-break: break-all;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+span {
+  white-space: nowrap;
+}

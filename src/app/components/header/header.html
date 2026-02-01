@@ -1,0 +1,32 @@
+<nav animate.enter="slide-in">
+  <div class="content">
+    <a href="/" class="logo">
+      @for (char of logoChars; track $index) {
+      <p>{{ char }}</p>
+      }
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Abrir menu" (click)="toggleMenu()">
+      <mat-icon>{{ menuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+
+    @if (isMobile()) {
+    <div class="nav-links" [class.nav-links--open]="menuOpen">
+      <ng-container *ngTemplateOutlet="navLinks"></ng-container>
+    </div>
+    } @else {
+    <ng-container *ngTemplateOutlet="navLinks"></ng-container>
+    }
+  </div>
+</nav>
+
+<ng-template #navLinks>
+  <ul>
+    @for (item of paths; track $index) {
+    <li>
+      <a [href]="item.path">{{ item.label }}</a>
+    </li>
+    }
+  </ul>
+  <a href="/veiculos/cadastrar" class="btn btn-secondary">Cadastrar produto</a>
+</ng-template>

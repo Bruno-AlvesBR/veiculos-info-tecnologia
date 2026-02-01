@@ -1,0 +1,26 @@
+@use '../../../variables.scss' as *;
+
+:host {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 0px 10px #00000010;
+  padding: 0.5rem 0.75rem;
+
+  @include media-up(sm) {
+    padding: 0.5rem 1rem;
+  }
+}
+
+p {
+  margin: 0;
+  font-size: 0.875rem;
+
+  @include media-up(sm) {
+    font-size: 1rem;
+  }
+}

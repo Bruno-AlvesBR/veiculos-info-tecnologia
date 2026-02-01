@@ -1,0 +1,52 @@
+<div class="container">
+  <app-breadcrumb />
+
+  <div class="content-wrapper">
+    @if (loading) {
+    <p class="content-loading">Carregando...</p>
+    } @else if (errorMessage) {
+    <p class="content-error">{{ errorMessage }}</p>
+    <a routerLink="/veiculos" class="btn btn-primary">Voltar para listagem</a>
+    } @else if (vehicle) {
+    <div class="content">
+      <img [src]="vehicle.imageUrl" [alt]="vehicle.name" />
+
+      <div class="content-details">
+        <h1 class="content-title">{{ vehicle.brand }} {{ vehicle.name }}</h1>
+
+        @if (vehicle.model) {
+        <p class="content-model">{{ vehicle.model }}</p>
+        }
+
+        <div class="content-info">
+          <span class="content-info-item">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Ano de fabricação: {{ vehicle.yearFabrication }}</span>
+          </span>
+          @if (vehicle.yearLaunch) {
+          <span class="content-info-item">
+            <mat-icon>calendar_today</mat-icon>
+            <span>Ano de lançamento: {{ vehicle.yearLaunch }}</span>
+          </span>
+          } @if (vehicle.mileage) {
+          <span class="content-info-item">
+            <mat-icon>speed</mat-icon>
+            <span>Quilometragem: {{ vehicle.mileage }} Km</span>
+          </span>
+          }
+        </div>
+
+        <p class="content-price">
+          @if (vehicle.price) { @if (vehicle.price.includes('R$')) {
+          {{ vehicle.price }}
+          } @else {
+          {{ vehicle.price | currency : 'BRL' : 'symbol-narrow' }}
+          } } @else { Consulte }
+        </p>
+
+        <a routerLink="/veiculos" class="btn btn-secondary">Voltar para listagem</a>
+      </div>
+    </div>
+    }
+  </div>
+</div>

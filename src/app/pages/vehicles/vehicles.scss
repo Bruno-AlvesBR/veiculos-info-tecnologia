@@ -1,0 +1,155 @@
+@use '../../../variables.scss' as *;
+
+.content {
+  @include flex-col;
+  gap: 1rem;
+  align-items: stretch;
+  width: 100%;
+
+  @include media-up(lg) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.content-list {
+  @include flex-col;
+  gap: 1rem;
+  align-items: flex-start;
+  width: 100%;
+  min-height: 70dvh;
+
+  @include media-up(lg) {
+    min-height: 85dvh;
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+app-reorder {
+  margin-left: auto;
+}
+
+.content-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  height: 100%;
+  width: 100%;
+
+  @include media-up(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-up(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include media-up(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include media-up(xl) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.content-empty-state {
+  @include flex-col;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  width: 100%;
+  min-height: 300px;
+
+  @include media-up(md) {
+    padding: 3rem 2rem;
+    min-height: 400px;
+  }
+
+  .content-empty-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    opacity: 0.4;
+  }
+
+  .content-empty-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .content-empty-description {
+    margin: 0;
+    color: var(--text-secondary, #666);
+    max-width: 400px;
+  }
+
+  .content-empty-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background-color: #1bdbdb;
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s all ease-in-out;
+
+    &:hover {
+      box-shadow: 0px 0px 10px #1bdbdb80;
+      opacity: 0.95;
+    }
+  }
+}
+
+.scroll-top-button {
+  background-color: #1bdbdb;
+  border-radius: 999px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+
+  position: fixed;
+  right: 1rem;
+  bottom: 1.5rem;
+
+  @include media-up(md) {
+    right: 2%;
+    bottom: 10%;
+    width: 40px;
+    height: 40px;
+  }
+
+  &:hover {
+    box-shadow: 0px 0px 10px #00000050;
+  }
+}
+
+:host ::ng-deep {
+  .mat-mdc-paginator {
+    margin: auto auto 0 auto;
+    width: 100%;
+    overflow-x: auto;
+
+    .mat-mdc-paginator-container {
+      flex-wrap: wrap;
+      padding: 0 0.5rem;
+
+      @include media-up(sm) {
+        padding: 0 1rem;
+      }
+    }
+  }
+}
