@@ -33,4 +33,9 @@ export class VehicleProvider extends BaseAPI {
     const response = await this.get<number>(`${this.baseUrl}/vehicles/count`, filter);
     return response;
   }
+
+  async deleteById(identifier: string): Promise<boolean> {
+    const response = await this.delete(`${this.baseUrl}/vehicles/${identifier}`);
+    return response as boolean;
+  }
 }

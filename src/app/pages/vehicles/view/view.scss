@@ -67,14 +67,35 @@
   }
 }
 
+.content-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .content-title {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
   word-break: break-word;
+  flex: 1;
 
   @include media-up(md) {
     font-size: 1.5rem;
+  }
+}
+
+.delete-button {
+  color: #d32f2f;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    background-color: #d32f2f14;
+  }
+
+  &:disabled {
+    opacity: 0.5;
   }
 }
 

@@ -12,7 +12,18 @@
       <img [src]="vehicle.imageUrl" [alt]="vehicle.name" />
 
       <div class="content-details">
-        <h1 class="content-title">{{ vehicle.brand }} {{ vehicle.name }}</h1>
+        <div class="content-header">
+          <h1 class="content-title">{{ vehicle.brand }} {{ vehicle.name }}</h1>
+          <button
+            mat-icon-button
+            class="delete-button"
+            (click)="openDeleteDialog()"
+            [disabled]="deleting"
+            aria-label="Excluir veículo"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
 
         @if (vehicle.model) {
         <p class="content-model">{{ vehicle.model }}</p>
